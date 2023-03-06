@@ -71,7 +71,7 @@ const Home = () => {
         </h3>
         <p>Boost your knowledge to survive in any condition in the world</p>
       </div>
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center my-24">
         <div className="w-2/6 text-center">
           <h3 className="text-3xl font-bold">
             Upskill you and your team for the ultimate adventure
@@ -89,6 +89,24 @@ const Home = () => {
             src="https://d2w1le1t5r6d3w.cloudfront.net/images/_1200x801_crop_center-center_82_line/DSC09771.jpg"
             alt=""
           />
+        </div>
+      </div>
+      <div className="flex justify-center items-center my-24">
+        <div className="w-2/6 text-center">
+          <img
+            src="https://boreal.net/articles/survival-training/images/building-a-2nd-day-survival-saw.jpg"
+            alt=""
+          />
+        </div>
+        <div className="w-2/6 text-center ml-5">
+          <h3 className="text-3xl font-bold">Become an instructor</h3>
+          <p>
+            World famous instructors teach survival skills to thousands of
+            students. Wanna become an instructor?{" "}
+          </p>
+          <button className="p-3 bg-lime-400 rounded-md text-white mt-3 hover:bg-lime-900">
+            Contact Us
+          </button>
         </div>
       </div>
     </div>
