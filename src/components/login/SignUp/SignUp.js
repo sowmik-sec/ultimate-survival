@@ -1,15 +1,29 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
+  const [error, setError] = useState("");
+  const { createUser } = useContext(AuthContext);
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(`Email: ${email}`);
     console.log(`Password: ${password}`);
     console.log(`Confirm Password: ${confirmPassword}`);
+    if (password !== confirmPassword) {
+      setError("Enter the correct password");
+      return;
+    }
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
   };
 
   return (
