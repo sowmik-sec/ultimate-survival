@@ -1,11 +1,14 @@
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/images/logo.png";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+import SignUp from "../login/SignUp/SignUp";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
+  const { user, logout } = useContext(AuthContext);
   return (
     <div className="flex justify-between items-center mx-12 my-2">
       <div className="flex items-center">
@@ -49,6 +52,26 @@ const Header = () => {
           >
             <p>FAQ</p>
           </Link>
+          {user ? (
+            <Link className="text-lg font-bold hover:bg-orange-500 cursor-pointer p-2 rounded">
+              Log out
+            </Link>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className="text-lg font-bold hover:bg-orange-500 cursor-pointer p-2 rounded"
+              >
+                Log In
+              </Link>
+              <Link
+                to="/signup"
+                className="text-lg font-bold hover:bg-orange-500 cursor-pointer p-2 rounded"
+              >
+                Sign Up
+              </Link>
+            </>
+          )}
         </ul>
       </div>
     </div>
