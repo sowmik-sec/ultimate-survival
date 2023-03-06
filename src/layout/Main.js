@@ -8,9 +8,8 @@ const Main = () => {
   return (
     <div>
       <Header />
-      <Home />
-      <Footer />
       <Outlet />
+      <Footer />
     </div>
   );
 };
