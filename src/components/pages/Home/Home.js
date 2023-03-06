@@ -65,6 +65,32 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <div className="text-center my-28">
+        <h3 className="text-3xl font-bold">
+          Trusted by over 12,000 students around the world
+        </h3>
+        <p>Boost your knowledge to survive in any condition in the world</p>
+      </div>
+      <div className="flex justify-center items-center">
+        <div className="w-2/6 text-center">
+          <h3 className="text-3xl font-bold">
+            Upskill you and your team for the ultimate adventure
+          </h3>
+          <ul>
+            <li>Unlimited and lifetime access to all our courses</li>
+            <li>
+              Courses can accessed via smart tv, iphone android and any where
+            </li>
+            <li>World's best survival experts are there for instruct you.</li>
+          </ul>
+        </div>
+        <div className="w-2/6">
+          <img
+            src="https://d2w1le1t5r6d3w.cloudfront.net/images/_1200x801_crop_center-center_82_line/DSC09771.jpg"
+            alt=""
+          />
+        </div>
+      </div>
     </div>
   );
 };
