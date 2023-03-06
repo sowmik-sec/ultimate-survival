@@ -9,6 +9,11 @@ import SignUp from "../login/SignUp/SignUp";
 const Header = () => {
   const [open, setOpen] = useState(false);
   const { user, logout } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logout()
+      .then(() => console.log("user logged out"))
+      .catch((error) => console.error(error));
+  };
   return (
     <div className="flex justify-between items-center mx-12 my-2">
       <div className="flex items-center">
@@ -53,7 +58,10 @@ const Header = () => {
             <p>FAQ</p>
           </Link>
           {user ? (
-            <Link className="text-lg font-bold hover:bg-orange-500 cursor-pointer p-2 rounded">
+            <Link
+              onClick={handleLogOut}
+              className="text-lg font-bold hover:bg-orange-500 cursor-pointer p-2 rounded"
+            >
               Log out
             </Link>
           ) : (

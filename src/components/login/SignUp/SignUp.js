@@ -22,6 +22,10 @@ function SignUp() {
     createUser(email, password)
       .then((result) => {
         const user = result.user;
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
+        setError("");
         console.log(user);
       })
       .catch((error) => {
@@ -63,7 +67,7 @@ function SignUp() {
           onChange={(event) => setConfirmPassword(event.target.value)}
           className="w-full border border-gray-300 rounded-lg mb-4 px-4 py-2"
         />
-        <p>{error}</p>
+        <p className="text-red-500">{error}</p>
         <p>
           Have an Ultimate Survival account? <Link to="/login">Login</Link>
         </p>
