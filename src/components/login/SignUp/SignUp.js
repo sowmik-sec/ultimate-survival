@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 function SignUp() {
@@ -60,6 +61,10 @@ function SignUp() {
           onChange={(event) => setConfirmPassword(event.target.value)}
           className="w-full border border-gray-300 rounded-lg mb-4 px-4 py-2"
         />
+        <p>{error}</p>
+        <p>
+          Have a Ultimate Survival account? <Link to="/login">Login</Link>
+        </p>
         <button
           type="submit"
           className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
