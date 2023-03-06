@@ -16,6 +16,9 @@ function Login() {
     login(email, password)
       .then((result) => {
         const user = result.user;
+        setEmail("");
+        setPassword("");
+        setError("");
         console.log(user);
       })
       .catch((error) => {
@@ -24,7 +27,7 @@ function Login() {
   };
 
   return (
-    <div className="flex flex-col justify-start items-center h-screen">
+    <div className="flex flex-col justify-start items-center">
       <h1 className="text-3xl font-bold mb-4">Log in</h1>
       <form onSubmit={handleSubmit} className="w-80">
         <label htmlFor="email" className="block mb-2 font-medium">
@@ -58,7 +61,7 @@ function Login() {
           Log in
         </button>
       </form>
-      <div className="mt-10 flex flex-col items-center justify-start">
+      <div className="mt-10 mb-20 flex flex-col items-center justify-start">
         <button className="flex items-center p-2 bg-lime-300 hover:bg-lime-700 rounded-md w-[200px] mb-3">
           <img className="w-7" src={Google} alt="" />
           <p className="ml-3">Log in with Google</p>

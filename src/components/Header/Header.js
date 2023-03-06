@@ -4,7 +4,6 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/images/logo.png";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
-import SignUp from "../login/SignUp/SignUp";
 
 const Header = () => {
   const [open, setOpen] = useState(false);

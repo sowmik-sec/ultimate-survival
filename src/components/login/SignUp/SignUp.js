@@ -5,7 +5,9 @@ import Google from "../../../assets/images/icons8-google.svg";
 import Github from "../../../assets/images/icons8-github.svg";
 
 function SignUp() {
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  const [photoURL, setPhotoURL] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
@@ -34,9 +36,29 @@ function SignUp() {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen">
+    <div className="flex flex-col justify-center items-center ">
       <h1 className="text-3xl font-bold mb-4">Sign up</h1>
       <form onSubmit={handleSubmit} className="w-80">
+        <label htmlFor="username" className="block mb-2 font-medium">
+          Username
+        </label>
+        <input
+          type="text"
+          id="username"
+          value={username}
+          onChange={(event) => setUsername(event.target.value)}
+          className="w-full border border-gray-300 rounded-lg mb-4 px-4 py-2"
+        />
+        <label htmlFor="photoURL" className="block mb-2 font-medium">
+          Photo URL
+        </label>
+        <input
+          type="text"
+          id="photoURL"
+          value={photoURL}
+          onChange={(event) => setPhotoURL(event.target.value)}
+          className="w-full border border-gray-300 rounded-lg mb-4 px-4 py-2"
+        />
         <label htmlFor="email" className="block mb-2 font-medium">
           Email
         </label>
@@ -78,7 +100,7 @@ function SignUp() {
           Sign up
         </button>
       </form>
-      <div className="mt-10 flex flex-col items-center">
+      <div className="mt-10 mb-14 flex flex-col items-center">
         <button className="flex items-center p-2 bg-lime-300 hover:bg-lime-700 rounded-md w-[220px] mb-3">
           <img className="w-7" src={Google} alt="" />
           <p className="ml-3">Sign Up with Google</p>
