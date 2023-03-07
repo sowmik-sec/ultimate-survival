@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import Google from "../../../assets/images/icons8-google.svg";
 import Github from "../../../assets/images/icons8-github.svg";
+import { toast } from "react-hot-toast";
 
 function SignUp() {
   const [username, setUsername] = useState("");
@@ -11,13 +12,10 @@ function SignUp() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-  const { createUser, setUserPhoto, updateUserProfile } =
+  const { createUser, setUserPhoto, updateUserProfile, verifyEmail } =
     useContext(AuthContext);
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(`Email: ${email}`);
-    console.log(`Password: ${password}`);
-    console.log(`Confirm Password: ${confirmPassword}`);
     if (password !== confirmPassword) {
       setError("Enter the correct password");
       return;
@@ -25,6 +23,7 @@ function SignUp() {
     createUser(email, password)
       .then((result) => {
         updateUser(username, photoURL);
+        verify();
         setEmail("");
         setPassword("");
         setConfirmPassword("");
@@ -41,6 +40,14 @@ function SignUp() {
   const updateUser = (username, photoURL) => {
     updateUserProfile(username, photoURL)
       .then(() => console.log("Profile updated!"))
+      .catch((error) => console.error(error));
+  };
+
+  const verify = () => {
+    verifyEmail()
+      .then(() => {
+        toast.success("Please verify your email");
+      })
       .catch((error) => console.error(error));
   };
 

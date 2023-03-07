@@ -3,6 +3,7 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
+  sendEmailVerification,
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
@@ -22,6 +23,9 @@ const AuthProvider = ({ children }) => {
   const login = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
+  const verifyEmail = () => {
+    return sendEmailVerification(auth.currentUser);
+  };
   const logout = () => {
     return signOut(auth);
   };
@@ -33,7 +37,9 @@ const AuthProvider = ({ children }) => {
   };
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+      if (currentUser === null || currentUser.emailVerified) {
+        setUser(currentUser);
+      }
     });
     return () => unSubscribe;
   }, []);
@@ -46,6 +52,7 @@ const AuthProvider = ({ children }) => {
     userPhoto,
     setUserPhoto,
     updateUserProfile,
+    verifyEmail,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
