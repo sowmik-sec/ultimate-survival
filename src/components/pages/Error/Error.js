@@ -6,7 +6,7 @@ const Error = () => {
     <div>
       <Header />
       <h1 className="text-3xl text-center">
-        No such directory. Go to write directory.
+        No such directory. Go to right directory.
       </h1>
     </div>
   );

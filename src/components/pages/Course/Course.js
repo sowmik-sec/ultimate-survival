@@ -7,9 +7,10 @@ const Course = ({ course }) => {
   console.log(course);
   const { courseTitle, details, photo, instructor, id, price, rating } = course;
   return (
-    <div className="p-5 m-3 flex flex-col justify-between">
+    <div className="p-3 m-2 flex flex-col justify-between">
       <div>
-        <img src={photo} alt="" className="h-96 w-96" />
+        <img src={photo} alt="" className="h-72 w-80" />
+
         <h1 className="text-3xl">{courseTitle}</h1>
         <p>{instructor.name}</p>
         {details.length > 150 ? details.slice(0, 150) + "..." : details}
@@ -26,7 +27,7 @@ const Course = ({ course }) => {
         </p>
       </div>
       <div className="text-center">
-        <Link to={`/courses/${id}`}>
+        <Link to={`${id}`}>
           <button className="bg-amber-400 p-2 rounded-md">Show Details</button>
         </Link>
       </div>

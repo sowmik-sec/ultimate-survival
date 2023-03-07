@@ -6,13 +6,13 @@ import { Link, useLoaderData } from "react-router-dom";
 const CourseDetails = () => {
   const detail = useLoaderData();
   console.log(detail);
-  const { courseTitle, details, photo, instructor, price, rating } = detail;
+  const { courseTitle, details, photo, instructor, price, rating, id } = detail;
   return (
     <div className="min-h-screen p-6 h-auto w-[460px] mx-auto border-green-200">
       <img className="w-[450px] h-[400px]" src={photo} alt="" />
       <p className="text-3xl">{courseTitle}</p>
       <div className="flex justify-between items-center">
-        <p>Instructor: {instructor.name}</p>
+        <p>Instructor: {instructor?.name}</p>
         <img className="w-12 h-12 rounded-full" src={instructor.image} alt="" />
       </div>
       <div className="flex justify-between">
@@ -28,7 +28,7 @@ const CourseDetails = () => {
       </div>
       <p>{details}</p>
       <div className="text-center">
-        <Link to="/enroll">
+        <Link to={`/courses-kits/enroll`}>
           <button className="p-2 bg-orange-400 rounded-md">Enroll Now</button>
         </Link>
       </div>

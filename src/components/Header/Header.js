@@ -40,10 +40,10 @@ const Header = () => {
           }`}
         >
           <NavLink
-            to="/courses"
+            to="/courses-kits"
             className="text-lg font-bold hover:bg-orange-500 cursor-pointer p-2 rounded"
           >
-            <p>Courses</p>
+            <p>Courses & kits</p>
           </NavLink>
           <NavLink
             to="/blog"
