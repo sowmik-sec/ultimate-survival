@@ -40,6 +40,12 @@ export const routes = createBrowserRouter([
     element: <CoursesAndKits />,
     children: [
       {
+        path: "/courses-kits",
+        element: <Courses />,
+        // https://ultimate-survival.onrender.com/courses
+        loader: () => fetch(`http://localhost:5000/courses`),
+      },
+      {
         path: "courses",
         element: <Courses />,
         // https://ultimate-survival.onrender.com/courses

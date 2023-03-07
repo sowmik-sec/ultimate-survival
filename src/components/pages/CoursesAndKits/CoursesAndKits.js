@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import Footer from "../../Footer/Footer";
 import Header from "../../Header/Header";
+import Courses from "../Courses/Courses";
 
 const CoursesAndKits = () => {
   return (

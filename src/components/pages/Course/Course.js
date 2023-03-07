@@ -27,7 +27,7 @@ const Course = ({ course }) => {
         </p>
       </div>
       <div className="text-center">
-        <Link to={`${id}`}>
+        <Link to={`/courses-kits/courses/${id}`}>
           <button className="bg-amber-400 p-2 rounded-md">Show Details</button>
         </Link>
       </div>
