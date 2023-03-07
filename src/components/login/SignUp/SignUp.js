@@ -4,7 +4,7 @@ import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import Google from "../../../assets/images/icons8-google.svg";
 import Github from "../../../assets/images/icons8-github.svg";
 import { toast } from "react-hot-toast";
-import { GoogleAuthProvider } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 
 function SignUp() {
   const [username, setUsername] = useState("");
@@ -21,8 +21,10 @@ function SignUp() {
     updateUserProfile,
     verifyEmail,
     googleSignin,
+    githubSignIn,
   } = useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
   const handleSubmit = (event) => {
     event.preventDefault();
     if (password !== confirmPassword) {
@@ -62,6 +64,15 @@ function SignUp() {
 
   const handleGoogleSignIn = () => {
     googleSignin(googleProvider)
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+      })
+      .catch((error) => setError(error.message));
+  };
+
+  const handleGithubSignIn = () => {
+    githubSignIn(githubProvider)
       .then((result) => {
         const user = result.user;
         setUser(user);
@@ -144,7 +155,10 @@ function SignUp() {
           <img className="w-7" src={Google} alt="" />
           <p className="ml-3">Sign Up with Google</p>
         </button>
-        <button className="flex items-center p-2 bg-lime-300 hover:bg-lime-700 rounded-md w-[220px]">
+        <button
+          onClick={handleGithubSignIn}
+          className="flex items-center p-2 bg-lime-300 hover:bg-lime-700 rounded-md w-[220px]"
+        >
           <img className="w-7" src={Github} alt="" />
           <p className="ml-3">Sign Up with Github</p>
         </button>

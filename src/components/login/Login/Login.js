@@ -3,14 +3,16 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import Google from "../../../assets/images/icons8-google.svg";
 import Github from "../../../assets/images/icons8-github.svg";
-import { GoogleAuthProvider } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const { login, googleSignin, user, setUser } = useContext(AuthContext);
+  const { login, googleSignin, user, setUser, githubSignIn } =
+    useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
@@ -32,6 +34,14 @@ function Login() {
 
   const handleGoogleSignIn = () => {
     googleSignin(googleProvider)
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+      })
+      .catch((error) => setError(error.message));
+  };
+  const handleGithubSignIn = () => {
+    githubSignIn(githubProvider)
       .then((result) => {
         const user = result.user;
         setUser(user);
@@ -84,7 +94,10 @@ function Login() {
           <img className="w-7" src={Google} alt="" />
           <p className="ml-3">Log in with Google</p>
         </button>
-        <button className="flex items-center p-2 bg-lime-300 hover:bg-lime-700 rounded-md w-[200px]">
+        <button
+          onClick={handleGithubSignIn}
+          className="flex items-center p-2 bg-lime-300 hover:bg-lime-700 rounded-md w-[200px]"
+        >
           <img className="w-7" src={Github} alt="" />
           <p className="ml-3">Log in with Github</p>
         </button>
