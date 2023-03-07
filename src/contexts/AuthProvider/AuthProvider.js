@@ -14,6 +14,7 @@ const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState("");
+  const [userPhoto, setUserPhoto] = useState("");
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
@@ -29,7 +30,15 @@ const AuthProvider = ({ children }) => {
     });
     return () => unSubscribe;
   }, []);
-  const authInfo = { createUser, login, user, setUser, logout };
+  const authInfo = {
+    createUser,
+    login,
+    user,
+    setUser,
+    logout,
+    userPhoto,
+    setUserPhoto,
+  };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );

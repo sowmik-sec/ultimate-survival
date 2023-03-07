@@ -1,4 +1,4 @@
-import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faUser, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
@@ -7,7 +7,8 @@ import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
-  const { user, logout } = useContext(AuthContext);
+  const { user, userPhoto, logout } = useContext(AuthContext);
+  console.log(user);
   const handleLogOut = () => {
     logout()
       .then(() => console.log("user logged out"))
@@ -78,6 +79,16 @@ const Header = () => {
                 Sign Up
               </Link>
             </>
+          )}
+          {user?.photoURL ? (
+            <img
+              title={user.displayName}
+              className="w-11 rounded-full"
+              src={userPhoto}
+              alt=""
+            />
+          ) : (
+            <FontAwesomeIcon icon={faUser} />
           )}
         </ul>
       </div>

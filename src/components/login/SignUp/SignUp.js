@@ -11,7 +11,7 @@ function SignUp() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-  const { createUser } = useContext(AuthContext);
+  const { createUser, setUserPhoto } = useContext(AuthContext);
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(`Email: ${email}`);
@@ -24,10 +24,15 @@ function SignUp() {
     createUser(email, password)
       .then((result) => {
         const user = result.user;
+        user.photoURL = photoURL;
+        user.displayName = username;
         setEmail("");
         setPassword("");
         setConfirmPassword("");
+        setUsername("");
+        setPhotoURL("");
         setError("");
+        setUserPhoto(photoURL);
         console.log(user);
       })
       .catch((error) => {
