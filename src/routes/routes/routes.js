@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Login from "../../components/login/Login/Login";
 import SignUp from "../../components/login/SignUp/SignUp";
+import Buy from "../../components/pages/Buy/Buy";
 import CourseDetails from "../../components/pages/CourseDetails.js/CourseDetails";
 import Courses from "../../components/pages/Courses/Courses";
 import CoursesAndKits from "../../components/pages/CoursesAndKits/CoursesAndKits";
@@ -62,13 +63,21 @@ export const routes = createBrowserRouter([
         path: "kits",
         element: <Kits />,
         // https://ultimate-survival.onrender.com/courses
-        loader: () => fetch(`http://localhost:5000/courses`),
+        loader: () => fetch(`http://localhost:5000/kits`),
       },
       {
         path: "kits/:id",
         element: <KitDetails />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/courses/${params.id}`),
+          fetch(`http://localhost:5000/kits/${params.id}`),
+      },
+      {
+        path: "buy",
+        element: (
+          <PrivateRoute>
+            <Buy />
+          </PrivateRoute>
+        ),
       },
     ],
   },
