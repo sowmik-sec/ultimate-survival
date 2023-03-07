@@ -54,12 +54,14 @@ function Login() {
         <p>
           New to Ultimate Survival? Please <Link to="/signup">Sign Up</Link>
         </p>
-        <button
-          type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
-        >
-          Log in
-        </button>
+        <div className="text-center mt-3">
+          <button
+            type="submit"
+            className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+          >
+            Log in
+          </button>
+        </div>
       </form>
       <div className="mt-10 mb-20 flex flex-col items-center justify-start">
         <button className="flex items-center p-2 bg-lime-300 hover:bg-lime-700 rounded-md w-[200px] mb-3">
