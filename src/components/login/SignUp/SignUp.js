@@ -11,7 +11,8 @@ function SignUp() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-  const { createUser, setUserPhoto } = useContext(AuthContext);
+  const { createUser, setUserPhoto, updateUserProfile } =
+    useContext(AuthContext);
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(`Email: ${email}`);
@@ -23,9 +24,7 @@ function SignUp() {
     }
     createUser(email, password)
       .then((result) => {
-        const user = result.user;
-        user.photoURL = photoURL;
-        user.displayName = username;
+        updateUser(username, photoURL);
         setEmail("");
         setPassword("");
         setConfirmPassword("");
@@ -33,11 +32,16 @@ function SignUp() {
         setPhotoURL("");
         setError("");
         setUserPhoto(photoURL);
-        console.log(user);
       })
       .catch((error) => {
         setError(error.message);
       });
+  };
+
+  const updateUser = (username, photoURL) => {
+    updateUserProfile(username, photoURL)
+      .then(() => console.log("Profile updated!"))
+      .catch((error) => console.error(error));
   };
 
   return (
