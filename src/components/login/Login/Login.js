@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import Google from "../../../assets/images/icons8-google.svg";
 import Github from "../../../assets/images/icons8-github.svg";
@@ -9,17 +9,19 @@ function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const { login } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(`Email: ${email}`);
     console.log(`Password: ${password}`);
     login(email, password)
       .then((result) => {
-        const user = result.user;
+        navigate(from, { replace: true });
         setEmail("");
         setPassword("");
         setError("");
-        console.log(user);
       })
       .catch((error) => {
         setError(error.message);

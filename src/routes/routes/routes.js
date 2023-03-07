@@ -8,6 +8,7 @@ import Error from "../../components/pages/Error/Error";
 import Home from "../../components/pages/Home/Home";
 import UserProfile from "../../components/pages/UserProfile/UserProfile";
 import Main from "../../layout/Main";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const routes = createBrowserRouter([
   {
@@ -18,17 +19,22 @@ export const routes = createBrowserRouter([
       {
         path: "/courses",
         element: <Courses />,
-        loader: () => fetch(`https://ultimate-survival.onrender.com/courses`),
+        // https://ultimate-survival.onrender.com/courses
+        loader: () => fetch(`http://localhost:5000/courses`),
       },
       {
         path: "/courses/:id",
         element: <CourseDetails />,
         loader: ({ params }) =>
-          fetch(`https://ultimate-survival.onrender.com/courses/${params.id}`),
+          fetch(`http://localhost:5000/courses/${params.id}`),
       },
       {
         path: "/enroll",
-        element: <Enroll />,
+        element: (
+          <PrivateRoute>
+            <Enroll />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",

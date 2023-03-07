@@ -17,16 +17,21 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState("");
   const [userPhoto, setUserPhoto] = useState("");
+  const [loading, setLoading] = useState(true);
   const createUser = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
   const login = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
   const verifyEmail = () => {
+    setLoading(true);
     return sendEmailVerification(auth.currentUser);
   };
   const logout = () => {
+    setLoading(true);
     return signOut(auth);
   };
   const updateUserProfile = (username, photoURl) => {
@@ -40,6 +45,7 @@ const AuthProvider = ({ children }) => {
       if (currentUser === null || currentUser.emailVerified) {
         setUser(currentUser);
       }
+      setLoading(false);
     });
     return () => unSubscribe;
   }, []);
@@ -53,6 +59,7 @@ const AuthProvider = ({ children }) => {
     setUserPhoto,
     updateUserProfile,
     verifyEmail,
+    loading,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
