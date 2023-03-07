@@ -4,6 +4,7 @@ import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import Google from "../../../assets/images/icons8-google.svg";
 import Github from "../../../assets/images/icons8-github.svg";
 import { toast } from "react-hot-toast";
+import { GoogleAuthProvider } from "firebase/auth";
 
 function SignUp() {
   const [username, setUsername] = useState("");
@@ -12,8 +13,16 @@ function SignUp() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-  const { createUser, setUserPhoto, updateUserProfile, verifyEmail } =
-    useContext(AuthContext);
+  const {
+    createUser,
+    setUserPhoto,
+    user,
+    setUser,
+    updateUserProfile,
+    verifyEmail,
+    googleSignin,
+  } = useContext(AuthContext);
+  const googleProvider = new GoogleAuthProvider();
   const handleSubmit = (event) => {
     event.preventDefault();
     if (password !== confirmPassword) {
@@ -49,6 +58,15 @@ function SignUp() {
         toast.success("Please verify your email");
       })
       .catch((error) => console.error(error));
+  };
+
+  const handleGoogleSignIn = () => {
+    googleSignin(googleProvider)
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+      })
+      .catch((error) => setError(error.message));
   };
 
   return (
@@ -119,7 +137,10 @@ function SignUp() {
         </div>
       </form>
       <div className="mt-10 mb-14 flex flex-col items-center">
-        <button className="flex items-center p-2 bg-lime-300 hover:bg-lime-700 rounded-md w-[220px] mb-3">
+        <button
+          onClick={handleGoogleSignIn}
+          className="flex items-center p-2 bg-lime-300 hover:bg-lime-700 rounded-md w-[220px] mb-3"
+        >
           <img className="w-7" src={Google} alt="" />
           <p className="ml-3">Sign Up with Google</p>
         </button>

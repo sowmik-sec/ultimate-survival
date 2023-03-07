@@ -5,6 +5,7 @@ import {
   onAuthStateChanged,
   sendEmailVerification,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
   updateProfile,
 } from "firebase/auth";
@@ -30,6 +31,9 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return sendEmailVerification(auth.currentUser);
   };
+  const googleSignin = (provider) => {
+    return signInWithPopup(auth, provider);
+  };
   const logout = () => {
     setLoading(true);
     return signOut(auth);
@@ -54,6 +58,7 @@ const AuthProvider = ({ children }) => {
     login,
     user,
     setUser,
+    googleSignin,
     logout,
     userPhoto,
     setUserPhoto,
