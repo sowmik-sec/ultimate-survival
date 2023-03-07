@@ -6,6 +6,7 @@ import Courses from "../../components/pages/Courses/Courses";
 import Enroll from "../../components/pages/Enroll/Enroll";
 import Error from "../../components/pages/Error/Error";
 import Home from "../../components/pages/Home/Home";
+import UserProfile from "../../components/pages/UserProfile/UserProfile";
 import Main from "../../layout/Main";
 
 export const routes = createBrowserRouter([
@@ -36,6 +37,10 @@ export const routes = createBrowserRouter([
       {
         path: "/signup",
         element: <SignUp />,
+      },
+      {
+        path: "/user-profile",
+        element: <UserProfile />,
       },
     ],
   },

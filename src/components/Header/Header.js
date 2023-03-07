@@ -81,12 +81,14 @@ const Header = () => {
             </>
           )}
           {user?.photoURL ? (
-            <img
-              title={user.displayName}
-              className="w-11 rounded-full"
-              src={user.photoURL}
-              alt=""
-            />
+            <Link to="/user-profile">
+              <img
+                title={user.displayName}
+                className="w-11 rounded-full"
+                src={user.photoURL}
+                alt=""
+              />
+            </Link>
           ) : (
             <FontAwesomeIcon icon={faUser} />
           )}
