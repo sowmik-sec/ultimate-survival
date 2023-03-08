@@ -43,19 +43,19 @@ export const routes = createBrowserRouter([
         path: "/courses-kits",
         element: <Courses />,
         // https://ultimate-survival.onrender.com/courses
-        loader: () => fetch(`http://localhost:5000/courses`),
+        loader: () => fetch(`https://ultimate-survival.onrender.com/courses`),
       },
       {
         path: "courses",
         element: <Courses />,
         // https://ultimate-survival.onrender.com/courses
-        loader: () => fetch(`http://localhost:5000/courses`),
+        loader: () => fetch(`https://ultimate-survival.onrender.com/courses`),
       },
       {
         path: "courses/:id",
         element: <CourseDetails />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/courses/${params.id}`),
+          fetch(`https://ultimate-survival.onrender.com/${params.id}`),
       },
       {
         path: "enroll",
@@ -69,13 +69,13 @@ export const routes = createBrowserRouter([
         path: "kits",
         element: <Kits />,
         // https://ultimate-survival.onrender.com/courses
-        loader: () => fetch(`http://localhost:5000/kits`),
+        loader: () => fetch(`https://ultimate-survival.onrender.com/kits`),
       },
       {
         path: "kits/:id",
         element: <KitDetails />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/kits/${params.id}`),
+          fetch(`https://ultimate-survival.onrender.com/${params.id}`),
       },
       {
         path: "buy",
