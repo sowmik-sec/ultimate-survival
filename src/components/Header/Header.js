@@ -2,6 +2,7 @@ import { faBars, faUser, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import ReactSwitch from "react-switch";
 import Logo from "../../assets/images/logo.png";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
@@ -57,6 +58,7 @@ const Header = () => {
           >
             <p>FAQ</p>
           </NavLink>
+
           {user ? (
             <Link
               onClick={handleLogOut}
@@ -92,6 +94,9 @@ const Header = () => {
           ) : (
             <FontAwesomeIcon icon={faUser} />
           )}
+          <div>
+            <ReactSwitch />
+          </div>
         </ul>
       </div>
     </div>
