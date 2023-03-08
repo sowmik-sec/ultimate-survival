@@ -4,12 +4,13 @@ import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import Google from "../../../assets/images/icons8-google.svg";
 import Github from "../../../assets/images/icons8-github.svg";
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
+import { toast } from "react-hot-toast";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const { login, googleSignin, user, setUser, githubSignIn } =
+  const { login, googleSignin, setUser, githubSignIn, resetPassword } =
     useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
@@ -49,6 +50,14 @@ function Login() {
       .catch((error) => setError(error.message));
   };
 
+  const handleResetPassword = () => {
+    resetPassword(email)
+      .then(() => {
+        toast.success("Password reset email sent!");
+      })
+      .catch((error) => setError(error.message));
+  };
+
   return (
     <div className="flex flex-col justify-start items-center">
       <h1 className="text-3xl font-bold mb-4">Log in</h1>
@@ -75,7 +84,16 @@ function Login() {
         />
         <p className="text-red-500">{error}</p>
         <p>
-          New to Ultimate Survival? Please <Link to="/signup">Sign Up</Link>
+          New to Ultimate Survival? Please{" "}
+          <Link to="/signup" className="text-emerald-300">
+            Sign Up
+          </Link>
+        </p>
+        <p>
+          Forget password?{" "}
+          <Link onClick={handleResetPassword} className="text-emerald-300">
+            Reset password
+          </Link>
         </p>
         <div className="text-center mt-3">
           <button
