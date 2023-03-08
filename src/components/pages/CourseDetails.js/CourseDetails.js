@@ -26,7 +26,7 @@ const CourseDetails = () => {
           <p>Instructor: {instructor?.name}</p>
           <img
             className="w-12 h-12 rounded-full"
-            src={instructor.image}
+            src={instructor?.image}
             alt=""
           />
         </div>

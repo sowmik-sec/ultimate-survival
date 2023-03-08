@@ -15,6 +15,9 @@ const Header = () => {
       .then(() => console.log("user logged out"))
       .catch((error) => console.error(error));
   };
+  const handleSwitch = () => {
+    console.log("switch clicked");
+  };
   return (
     <div className="flex justify-between items-center mx-12 my-2">
       <div className="flex items-center">
@@ -95,7 +98,7 @@ const Header = () => {
             <FontAwesomeIcon icon={faUser} />
           )}
           <div>
-            <ReactSwitch />
+            <ReactSwitch onChange={handleSwitch} checked={false} />
           </div>
         </ul>
       </div>

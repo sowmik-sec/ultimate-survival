@@ -55,7 +55,7 @@ export const routes = createBrowserRouter([
         path: "courses/:id",
         element: <CourseDetails />,
         loader: ({ params }) =>
-          fetch(`https://ultimate-survival.onrender.com/${params.id}`),
+          fetch(`https://ultimate-survival.onrender.com/courses/${params.id}`),
       },
       {
         path: "enroll",
@@ -75,7 +75,7 @@ export const routes = createBrowserRouter([
         path: "kits/:id",
         element: <KitDetails />,
         loader: ({ params }) =>
-          fetch(`https://ultimate-survival.onrender.com/${params.id}`),
+          fetch(`https://ultimate-survival.onrender.com/kits/${params.id}`),
       },
       {
         path: "buy",
